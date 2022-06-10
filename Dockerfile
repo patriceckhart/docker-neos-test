@@ -6,7 +6,6 @@ ENV COMPOSER_VERSION 2.3.5
 ENV PERSISTENT_RESOURCES_FALLBACK_BASE_URI 0
 ENV HOME /data/neos
 ENV FLOW_PATH_TEMPORARY_BASE /data/neos/Data/Temporary
-ARG PHP_XDEBUG_VERSION="3.1.4"
 
 RUN set -x \
 	&& apk update \
@@ -50,12 +49,7 @@ RUN set -x \
 	&& pecl install imagick-beta && docker-php-ext-enable --ini-name 20-imagick.ini imagick \
 	&& pecl install vips && echo "extension=vips.so" > /usr/local/etc/php/conf.d/ext-vips.ini && docker-php-ext-enable --ini-name ext-vips.ini vips \
 	&& cd /tmp \
-	&& pecl install ssh2-1.3.1 && docker-php-ext-enable ssh2 && pecl install xdebug-${PHP_XDEBUG_VERSION} && docker-php-ext-enable xdebug \
-	&& echo "xdebug.remote_enable=0" >> $PHP_INI_DIR/conf.d/docker-php-ext-xdebug.ini \
-	&& echo "xdebug.remote_connect_back=1" >> $PHP_INI_DIR/conf.d/docker-php-ext-xdebug.ini \
-	&& echo "xdebug.max_nesting_level=512" >> $PHP_INI_DIR/conf.d/docker-php-ext-xdebug.ini \
-	&& echo "xdebug.idekey=\"PHPSTORM\"" >> $PHP_INI_DIR/conf.d/docker-php-ext-xdebug.ini \
-	&& echo "xdebug.remote_host=172.17.0.1" >> $PHP_INI_DIR/conf.d/docker-php-ext-xdebug.ini \
+	&& pecl install ssh2-1.3.1 && docker-php-ext-enable ssh2 \
 	&& pecl install yaml && echo "extension=yaml.so" > /usr/local/etc/php/conf.d/ext-yaml.ini && docker-php-ext-enable --ini-name ext-yaml.ini yaml \
 	&& curl -o /tmp/composer-setup.php https://getcomposer.org/installer && php /tmp/composer-setup.php --no-ansi --install-dir=/usr/local/bin --filename=composer --version=${COMPOSER_VERSION} && rm -rf /tmp/composer-setup.php \
 	&& echo 'StrictHostKeyChecking no' >> /etc/ssh/ssh_config \

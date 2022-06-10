@@ -24,8 +24,6 @@ su root -c "/root-files/build.sh"
 
 su root -c "/root-files/opt/crond.sh"
 
-su root -c "/root-files/opt/xdebug.sh"
-
 echo "Start configuring sshd ..."
 
 su root -c "/root-files/opt/sshd.sh"
