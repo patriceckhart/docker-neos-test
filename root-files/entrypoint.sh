@@ -14,9 +14,7 @@ echo "PHP configuration completed."
 chmod 066 /var/run/php-fpm.sock
 chown www-data:www-data /var/run/php-fpm.sock
 
-#su root -c "/root-files/opt/neos/cli/cli-permissions.sh"
-
-su www-data -c "/root-files/opt/dir.sh"
+su root -c "/root-files/opt/dir.sh"
 
 su root -c "/root-files/opt/ssl.sh"
 

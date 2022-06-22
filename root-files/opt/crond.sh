@@ -33,7 +33,6 @@ else
   echo "Create cron directory ..."
   mkdir -p /data/cron
   echo "Cron directory created."
-
 fi
 
 if [ -d "/data/neos/cron/1min" ]; then
@@ -102,3 +101,5 @@ ln -s /data/neos/cron/hourly /etc/periodic/hourly
 ln -s /data/neos/cron/daily /etc/periodic/daily
 ln -s /data/neos/cron/weekly /etc/periodic/weekly
 ln -s /data/neos/cron/monthly /etc/periodic/monthly
+
+chmod -R 775 /data/neos/cron
