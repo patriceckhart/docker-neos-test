@@ -102,4 +102,5 @@ ln -s /data/neos/cron/daily /etc/periodic/daily
 ln -s /data/neos/cron/weekly /etc/periodic/weekly
 ln -s /data/neos/cron/monthly /etc/periodic/monthly
 
+chown -R www-data /data/neos/cron
 chmod -R 775 /data/neos/cron
