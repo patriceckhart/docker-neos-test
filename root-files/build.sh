@@ -14,14 +14,14 @@ if [ ! -z "${GITHUB_REPOSITORY+xxx}" ]; then
 
 	if [ ! -e "$PULLEDFILE" ]; then
 
-		if [ -z ${GITHUB_TOKEN+x} ]; then 
+		if [ -z ${GITHUB_TOKEN+x} ]; then
 
 			if [ ! -e "$GITFILE" ]; then
 				git clone $GITHUB_REPOSITORY /data/neos
-			else 
+			else
 				git pull $GITHUB_REPOSITORY /data/neos
 			fi
-			
+
 		else
 
 			if [ ! -e "$GITFILE" ]; then
@@ -42,7 +42,7 @@ if [ ! -z "${GITHUB_REPOSITORY+xxx}" ]; then
 
 			else
 				git pull https://$GITHUB_USERNAME:$GITHUB_TOKEN@github.com/$GITHUB_USERNAME/$GITHUB_REPOSITORY /data/neos
-			fi 
+			fi
 
 		fi
 
@@ -62,12 +62,6 @@ if [ ! -z "${GITHUB_REPOSITORY+xxx}" ]; then
 
 		touch /data/.built
 
-		su root -c "/root-files/opt/neos/cli/cli-permissions.sh"
-
 	fi
 
 fi
-
-su root -c "/root-files/opt/env.sh"
-
-su root -c "/root-files/opt/neos/provisioning.sh"

@@ -1,4 +1,4 @@
-FROM php:7.4-fpm-alpine3.14
+FROM php:8.1-fpm-alpine3.14
 
 MAINTAINER Patric Eckhart <mail@patriceckhart.com>
 
@@ -19,8 +19,6 @@ RUN set -x \
 		opcache \
 		intl \
 		exif \
-		tokenizer \
-		json \
 	&& apk add --no-cache --virtual .deps imagemagick imagemagick-libs imagemagick-dev autoconf \
 	&& deluser www-data \
 	&& delgroup cdrw \
@@ -64,6 +62,11 @@ EXPOSE 80 443 22
 WORKDIR /data
 
 COPY /root-files/ /root-files/
-RUN chmod -R 755 /root-files
+
+RUN chown -R www-data:www-data /data/neos
+RUN chmod -R g+rwx /data/neos
+RUN chmod -R 775 /data/neos
+RUN chown -R www-data:www-data /root-files
+RUN chmod -R 775 /root-files
 
 ENTRYPOINT ["/root-files/entrypoint.sh"]

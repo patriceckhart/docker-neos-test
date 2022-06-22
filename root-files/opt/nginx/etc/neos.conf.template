@@ -52,7 +52,6 @@ server {
   if (${DOLLAR}host ~ \bdev\.) { set ${DOLLAR}context Development; }
   if (${DOLLAR}flowContext != "") { set ${DOLLAR}context ${DOLLAR}flowContext; }
 
-
   location ~ \.php${DOLLAR} {
     fastcgi_split_path_info ^(.+\.(?:php|phar))(/.*)${DOLLAR};
     fastcgi_intercept_errors on;
